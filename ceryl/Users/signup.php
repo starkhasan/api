@@ -28,7 +28,7 @@ if(validation($data)){
         $profile->state = "";
         $profile->phone = "";
 
-        if($profile->createProfile()){
+        if($profile->createProfile() && $user->createUser()){
             http_response_code(200);
             echo json_encode(array("status"=>200,"message"=>"User created sucessfully"));
         }else{
