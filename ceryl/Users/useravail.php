@@ -13,13 +13,13 @@ if(!empty($data)){
     $user->email = $data;
     if($user->userAvail()){
         http_response_code(200);
-        echo json_encode(array("status"=>200,"message"=>"User found."));
+        echo json_encode(array("status"=>200,"message"=>"User found"));
     }else{
         http_response_code(200);
-        echo json_encode(array("status"=>400,"message"=>"User not found."));
+        echo json_encode(array("status"=>400,"message"=>"User not found"));
     }
 }else{
     http_response_code(200);
-    echo json_encode(array("status"=>400,"message"=>"Please provide email"));
+    echo json_encode(array("status"=>400,"message"=>"Invalid Email"));
 }
 ?>

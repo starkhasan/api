@@ -1,7 +1,7 @@
 <?php
 class User{
     private $conn;
-    private $table_name = "user";
+    public $table_name = "user";
     public $email;
     public $password;
     // constructor with $db as database connection
@@ -33,6 +33,15 @@ class User{
             }
         }
         return $isUser;
+    }
+
+    function createUser(){
+        $query = "INSERT INTO user (email,password) VALUES('$this->email','$this->password')";
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
     }
 }
 ?>
