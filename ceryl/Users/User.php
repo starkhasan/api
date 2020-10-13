@@ -52,5 +52,14 @@ class User{
         }
         return false;
     }
+
+    function passwordUpdate(){
+        $query = "UPDATE user SET password = '$this->password' WHERE email = '$this->email'";
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
 }
 ?>
