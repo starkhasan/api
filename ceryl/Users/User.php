@@ -45,10 +45,10 @@ class User{
     }
 
     function deleteUser(){
-        $query = "DELETE FROM user WHERE 'email' = '$this->email'";
+        $query = "DELETE FROM user WHERE email = '$this->email'";
         $stmt = $this->conn->prepare($query);
         if($stmt->execute()){
-            return  true;
+            return true;
         }
         return false;
     }
