@@ -7,7 +7,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
   
 include_once '../config/database.php';
 include_once '../Users/User.php';
-
 $database = new Database();
 $db = $database->getConnection();
 $user = new User($db);
