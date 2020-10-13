@@ -16,12 +16,14 @@ if(!empty($data->email) && !empty($data->password)){
     $user->email = $data->email;
     $user->password = $data->password;
     if($user->userAvail()){
-        if($user->passwordUpdate()){
-            http_response_code(200);
-            echo json_encode(array("status"=>200,"message"=>"Password updated sucessfully"));
-        }else{
-            http_response_code(200);
-            echo json_encode(array("status"=>400,"message"=>"Unable to update password"));
+        if(validation($user->password)){
+            if($user->passwordUpdate()){
+                http_response_code(200);
+                echo json_encode(array("status"=>200,"message"=>"Password updated sucessfully"));
+            }else{
+                http_response_code(200);
+                echo json_encode(array("status"=>400,"message"=>"Unable to update password"));
+            }
         }
     }else{
         http_response_code(200);
@@ -30,5 +32,14 @@ if(!empty($data->email) && !empty($data->password)){
 }else{
     http_response_code(200);
     echo json_encode(array("status"=>400,"message"=>"Please provide email and password"));
+}
+
+function validation($temp){
+    if(strlen($temp) < 5){
+        http_response_code(200);
+        echo json_encode(array("status"=>400,"message"=>"Weak Password! Should be greater then 4"));
+        return false; 
+    }
+    return true;
 }
 ?>
