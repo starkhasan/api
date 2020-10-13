@@ -25,5 +25,23 @@ class Profile{
         return false;
     }
 
+    function deleteProfile(){
+        $query = "DELETE FROM profile WHERE email = '$this->email'";
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
+
+    function upgradeProfile(){
+        $query = "UPDATE profile SET phone = '$this->phone',image = '$this->image',name = '$this->name',birthday = '$this->birthday',address1 = '$this->address1',address2 = '$this->address2',pincode = '$this->pincode',state = '$this->state' WHERE email = '$this->email'";
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
+
 }
 ?>
