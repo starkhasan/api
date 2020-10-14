@@ -25,6 +25,19 @@ class Profile{
         return false;
     }
 
+    function readProfile(){
+        $query = "SELECT * FROM profile";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $userProfile = null;
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            if($row['email'] == $this->email){
+                $userProfile = $row;
+            }
+        }
+        return $userProfile;
+    }
+
     function deleteProfile(){
         $query = "DELETE FROM profile WHERE email = '$this->email'";
         $stmt = $this->conn->prepare($query);
