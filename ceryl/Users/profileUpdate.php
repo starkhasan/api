@@ -27,15 +27,15 @@ if(!empty($data->email)){
         $profile->address2 = $data->address2;
         $profile->pincode = $data->pincode;
         $profile->state = $data->state;
-
-        if($profile->upgradeProfile()){
-            http_response_code(200);
-            echo json_encode(array("status"=>200,"message"=>"Profile sucessfully upgrade"));
-        }else{
-            http_response_code(200);
-            echo json_encode(array("status"=>400,"message"=>"Unable to update profile"));
+        if(validation($data->phone,$data->pincode)){
+            if($profile->upgradeProfile()){
+                http_response_code(200);
+                echo json_encode(array("status"=>200,"message"=>"Profile sucessfully upgrade"));
+            }else{
+                http_response_code(200);
+                echo json_encode(array("status"=>400,"message"=>"Unable to update profile"));
+            }
         }
-        
     }else{
         http_response_code(200);
         echo json_encode(array("status"=>400,"message"=>"User not Found"));
@@ -43,5 +43,20 @@ if(!empty($data->email)){
 }else{
     http_response_code(200);
     echo json_encode(array("status"=>400,"message"=>"Invalid Email"));
+}
+
+
+function validation($phone,$zipCode){
+    if(strlen($phone)!=10){
+        http_response_code(200);
+        echo json_encode(array("status"=>400,"message"=>"Invalid phone number"));
+        return false;
+    }else if(strlen($zipCode)!=6){
+        http_response_code(200);
+        echo json_encode(array("status"=>400,"message"=>"Invalid zip code"));
+        return false;
+    }else{
+        return true;
+    }
 }
 ?>
