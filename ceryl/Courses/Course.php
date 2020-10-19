@@ -6,6 +6,7 @@ class Course{
     public $image;
     public $color;
     public $course_type;
+    public $course_content;
 
     public function __construct($db){
         $this->conn = $db;
@@ -22,7 +23,8 @@ class Course{
                 "course_name" => $course_name,
                 "image" => $image,
                 "color" => $color,
-                "course_type" => $course_type
+                "course_type" => $course_type,
+                "course_content" =>$course_content
             );
             array_push($userCourse, $course_item);
         }
