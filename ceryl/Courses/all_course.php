@@ -9,6 +9,11 @@ include_once '../config/database.php';
 include_once '../Courses/Course.php';
 include_once '../Profiles/Profile.php';
 
+/*
+$request_type = $_SERVER['REQUEST_METHOD'];
+echo $request_type;
+$header = apache_request_headers();
+echo json_encode($header);*/
 $database = new Database();
 $db = $database->getConnection();
 $course = new Course($db);
