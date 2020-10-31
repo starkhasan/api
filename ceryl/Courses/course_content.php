@@ -23,18 +23,36 @@ if(!empty($data)){
         $course_content["status"] = 200;
         $course_content["message"] = "Course Content of {$course}";
         $course_content["title"] = $row['title'];
-        $course_content["content"] = array(
-            "content1"=> $row["content1"],
-            "image_content1"=> $row["image_content1"],
-            "content2"=> $row["content2"],
-            "image_content2"=> $row["image_content2"],
-            "content3"=> $row["content3"],
-            "image_content3"=> $row["image_content3"],
-            "content4"=> $row["content4"],
-            "image_content4"=> $row["image_content4"],
-            "content5"=> $row["content5"],
-            "imagecontent5"=> $row["image_content5"]
+        $course_content["content"] = array();
+
+        $content1 = array(
+            "content"=> $row["content1"],
+            "image_content"=> $row["image_content1"]
         );
+        array_push($course_content["content"], $content1);
+        $content2 = array(
+            "content"=> $row["content2"],
+            "image_content"=> $row["image_content2"]
+        );
+        array_push($course_content["content"], $content2);
+
+        $content3 = array(
+            "content"=> $row["content3"],
+            "image_content"=> $row["image_content3"]
+        );
+        array_push($course_content["content"], $content3);
+
+        $content4 = array(
+            "content"=> $row["content4"],
+            "image_content"=> $row["image_content4"]
+        );
+        array_push($course_content["content"], $content4);
+
+        $content5 = array(
+            "content"=> $row["content5"],
+            "imagecontent"=> $row["image_content5"]
+        );
+        array_push($course_content["content"], $content5);
         http_response_code(200);
         echo json_encode($course_content);
     }else{
