@@ -29,7 +29,6 @@ class Java{
             }
         }
         return $contents;
-
     }
 
 }
